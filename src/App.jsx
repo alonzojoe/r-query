@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import "./App.css";
 import api from "./api";
 
@@ -41,6 +41,8 @@ const fetchPosts = async (interval) => {
 };
 
 function App() {
+  const queryClient = useQueryClient();
+
   const postQuery = useQuery({
     queryKey: ["posts"],
     queryFn: () => fetchPosts(2000),
@@ -49,6 +51,7 @@ function App() {
 
   const newPostMutation = useMutation({
     mutationFn: (title) => createNewPost(3000, title),
+    onSuccess: () => queryClient.invalidateQueries(["posts"]), //after mutationFn success it will refetch the data from api using onSuccess
   });
 
   if (postQuery.isLoading) return <p>Loading...</p>;

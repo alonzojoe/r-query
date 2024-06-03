@@ -18,7 +18,7 @@ const PostB = () => {
         data.map((post) => (
           <div key={post.id}>
             <h1>
-              {post.id} {post.title}
+              {post.id}. {post.title}
             </h1>
             <p>{post.body}</p>
           </div>

@@ -25,20 +25,24 @@ const CreatePost = ({ setCurrentPage }) => {
   };
 
   return (
-    <form onSubmit={submitFormHandler}>
-      <h4>Create New Post</h4>
-      <div>
-        <label htmlFor="title">Title:</label>
-        <input ref={title} type="text" id="title" />
-      </div>
-      <div>
-        <label htmlFor="body">Body:</label>
-        <input ref={body} type="text" id="body" />
-      </div>
-      <button disabled={createPostMutation.isPending}>
-        {createPostMutation.isPending ? "Saving....." : "Save"}
-      </button>
-    </form>
+    <>
+      {createPostMutation.isError &&
+        JSON.stringify(createPostMutation.error.message)}
+      <form onSubmit={submitFormHandler}>
+        <h4>Create New Post</h4>
+        <div>
+          <label htmlFor="title">Title:</label>
+          <input ref={title} type="text" id="title" />
+        </div>
+        <div>
+          <label htmlFor="body">Body:</label>
+          <input ref={body} type="text" id="body" />
+        </div>
+        <button disabled={createPostMutation.isPending}>
+          {createPostMutation.isPending ? "Saving....." : "Save"}
+        </button>
+      </form>
+    </>
   );
 };
 

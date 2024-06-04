@@ -12,7 +12,7 @@ export const getPostById = async (id) => {
 
 export const createPost = async (postDetails) => {
   return await api
-    .post("/posts/add", {
+    .post("/post/add", {
       title: postDetails.title,
       body: postDetails.body,
       userId: LOGGED_USER_ID,

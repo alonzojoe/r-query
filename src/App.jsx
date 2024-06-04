@@ -3,6 +3,7 @@ import Posts from "./Posts";
 import PostA from "./PostA";
 import PostB from "./PostB";
 import Post from "./Post";
+import CreatePost from "./CreatePost";
 import "./App.css";
 
 function App() {
@@ -19,11 +20,17 @@ function App() {
 
   return (
     <>
-      {id}
       <button onClick={() => setCurrentPage(<Posts />)}>All Posts</button>
       <button onClick={() => setCurrentPage(<PostA />)}>Post A</button>
       <button onClick={() => setCurrentPage(<PostB />)}>Post B</button>
       <button onClick={getSinglePost}>Single Post</button>
+      <button
+        onClick={() =>
+          setCurrentPage(<CreatePost setCurrentPage={setCurrentPage} />)
+        }
+      >
+        Create Post
+      </button>
       <hr />
       {currentPage}
     </>

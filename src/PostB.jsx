@@ -6,7 +6,8 @@ const POST_LIMIT = 10;
 const PostB = () => {
   const { isLoading, isError, error, data } = useQuery({
     queryKey: ["posts", "B", { limit: POST_LIMIT }],
-    queryFn: () => getPosts(2000, POST_LIMIT),
+    queryFn: () => getPosts(POST_LIMIT),
+    retry: 2,
     // staleTime: 1000,
     // refetchInterval: 1000,
   });

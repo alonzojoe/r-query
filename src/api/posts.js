@@ -1,31 +1,21 @@
 import api from "./index";
 
-export const getPosts = async (interval, limit) => {
-  const response = await new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      try {
-        const res = await api.get(`/posts?limit=${limit}`);
-        resolve(res);
-      } catch (error) {
-        reject(error);
-      }
-    }, interval);
-  });
+const LOGGED_USER_ID = 7;
 
-  return response.data.posts;
+export const getPosts = async (limit) => {
+  return await api.get(`/posts?limit=${limit}`).then((res) => res.data.posts);
 };
 
-export const getPostById = async (interval, id) => {
-  const response = await new Promise((resolve, reject) => {
-    setTimeout(async () => {
-      try {
-        const res = await api.get(`/posts/${id}`);
-        resolve(res);
-      } catch (error) {
-        reject(error);
-      }
-    }, interval);
-  });
+export const getPostById = async (id) => {
+  return await api.get(`/posts/${id}`).then((res) => res.data);
+};
 
-  return response.data;
+export const createPost = async (postDetails) => {
+  return await api
+    .post("/posts/add", {
+      title: postDetails.title,
+      body: postDetails.body,
+      userId: LOGGED_USER_ID,
+    })
+    .then((res) => res.data);
 };

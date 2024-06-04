@@ -6,7 +6,7 @@ const POST_LIMIT = 5;
 const PostB = () => {
   const { isLoading, isError, error, data } = useQuery({
     queryKey: ["posts", "A", { limit: POST_LIMIT }],
-    queryFn: () => getPosts(2000, POST_LIMIT),
+    queryFn: () => getPosts(POST_LIMIT),
   });
 
   if (isLoading) return <p>Loading....</p>;

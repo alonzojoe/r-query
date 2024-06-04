@@ -5,13 +5,13 @@ import { getUser } from "./api/users";
 const Post = ({ id }) => {
   const { isLoading, isError, error, data } = useQuery({
     queryKey: ["post", id],
-    queryFn: () => getPostById(1500, id),
+    queryFn: () => getPostById(id),
   });
 
   const userQuery = useQuery({
     queryKey: ["user", data?.userId],
     enabled: data?.userId != null,
-    queryFn: () => getUser(2000, data.userId),
+    queryFn: () => getUser(data.userId),
   });
 
   if (isLoading) return <p>Loading...</p>;

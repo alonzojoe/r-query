@@ -10,9 +10,15 @@ const CreatePost = ({ setCurrentPage }) => {
 
   const createPostMutation = useMutation({
     mutationFn: (title, body) => createPost({ title, body }),
-    onSuccess: () => {
+    onSuccess: (data, variables, context) => {
+      // console.log("data", data); //response data from api
+      console.log("context", context); //return data in onMutate
       queryClient.invalidateQueries(["posts"]);
-      setCurrentPage(<Posts />);
+      // setCurrentPage(<Posts />);
+    },
+    //runs first than onSuccess
+    onMutate: (variables) => {
+      return variables;
     },
   });
 

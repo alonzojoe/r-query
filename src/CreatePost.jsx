@@ -13,7 +13,7 @@ const CreatePost = ({ setCurrentPage }) => {
     onSuccess: (data, variables, context) => {
       // console.log("data", data); //response data from api
       console.log("context", context); //return data in onMutate
-      queryClient.setQueryData(["posts", data.id], data);
+      queryClient.setQueryData(["posts", data.id], data); //manually updating the cache
       queryClient.invalidateQueries(["posts"], { exact: true }); //exact true is used for invalidating exact queryKey
       setCurrentPage(<Posts />);
     },

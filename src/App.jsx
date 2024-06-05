@@ -4,6 +4,7 @@ import PostA from "./PostA";
 import PostB from "./PostB";
 import Post from "./Post";
 import CreatePost from "./CreatePost";
+import PaginatedTodos from "./PaginatedTodos";
 import "./App.css";
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
         }
       >
         Create Post
+      </button>
+      <button onClick={() => setCurrentPage(<PaginatedTodos />)}>
+        Paginated Todos
       </button>
       <hr />
       {currentPage}

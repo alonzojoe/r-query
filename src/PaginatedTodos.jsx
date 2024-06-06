@@ -42,7 +42,6 @@ const PaginatedTodos = () => {
   return (
     <>
       <h2>Paginated Todos</h2>
-      {isPlaceholderData && "Previous Data"}
       {data.todos.map((todo) => (
         <div key={todo.id}>
           <h4>
@@ -55,6 +54,7 @@ const PaginatedTodos = () => {
         <span>
           Page {currentPage} out of {totalPages}
         </span>
+        {isPlaceholderData && "Previous Data"}
         <span>Total: {data.total}</span>
       </div>
       <hr />
